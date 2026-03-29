@@ -213,7 +213,7 @@ button { background: none; border: none; font-family: inherit; cursor: pointer; 
 /* ── Right doc cards ── */
 .doc-cards {
   position: relative;
-  width: 340px;
+  width: 400px;
   height: 420px;
   flex-shrink: 0;
   opacity: 0;
@@ -225,89 +225,108 @@ button { background: none; border: none; font-family: inherit; cursor: pointer; 
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Each doc card */
 .doc-card {
   position: absolute;
   width: 260px;
-  height: 340px;
+  height: 320px;
   cursor: pointer;
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), z-index 0s;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
 }
 
-/* Resume: tilted left, behind */
-.doc-card--resume {
-  left: 0; top: 40px;
-  transform: rotate(-12deg);
-  z-index: 1;
-}
-.doc-card--resume:hover {
-  transform: rotate(-14deg) translateY(-10px) scale(1.03);
-  z-index: 10;
-}
-
-/* Portfolio: tilted right, in front */
-.doc-card--portfolio {
-  right: 0; top: 30px;
-  transform: rotate(14deg);
-  z-index: 2;
-}
-.doc-card--portfolio:hover {
-  transform: rotate(16deg) translateY(-10px) scale(1.03);
-  z-index: 10;
-}
+.doc-card--resume  { left: 0;  top: 40px; transform: rotate(-8deg);  z-index: 1; }
+.doc-card--resume:hover  { transform: rotate(-8deg)  translateY(-10px); z-index: 10; }
+.doc-card--portfolio { right: 0; top: 20px; transform: rotate(10deg);  z-index: 2; }
+.doc-card--portfolio:hover { transform: rotate(10deg) translateY(-10px); z-index: 10; }
 
 .doc-card__inner {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   background: #fff;
-  border: 2px solid #DEDEDE;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
+  border: 1.5px solid #DEDEDE;
+  border-radius: 18px;
+  display: flex; flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  transition: box-shadow 0.35s;
+}
+.doc-card:hover .doc-card__inner {
+  box-shadow: 0 18px 44px rgba(0,0,0,0.13);
 }
 
-.doc-card__preview {
-  flex: 1;
-  padding: 20px 18px 10px;
-  background: #fff;
-  overflow: hidden;
-}
-
-.doc-card__preview-content {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Skeleton lines inside doc preview */
-.doc-preview-line {
-  height: 8px; border-radius: 4px; background: #e8e8e8;
-  width: 85%;
-}
-.doc-preview-line--title { height: 10px; width: 55%; background: #c8c8c8; }
-.doc-preview-line--name  { height: 18px; width: 40%; background: #b0b0b0; border-radius: 4px; }
-.doc-preview-line--name-kr { height: 22px; width: 60%; background: #b0b0b0; border-radius: 4px; font-family: 'Pretendard', sans-serif; }
-.doc-preview-line--short { width: 55%; }
-.doc-preview-spacer { height: 12px; }
-.doc-preview-chip {
-  display: inline-block;
-  font-family: 'Poppins', sans-serif;
-  font-size: 9px; font-weight: 500;
-  color: #888; letter-spacing: 0.05em;
-  margin-bottom: 4px;
-}
-
-.doc-card__label {
-  padding: 10px 18px 14px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300; font-size: 11px;
-  color: #aaa; letter-spacing: 0.05em;
-  border-top: 1px solid #f0f0f0;
-  text-transform: uppercase;
+/* Header: A스타일, 구분선 없음 */
+.doc-card__header {
+  padding: 16px 16px 0;
+  display: flex; justify-content: space-between; align-items: flex-start;
   flex-shrink: 0;
 }
+.doc-card__header-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px; font-weight: 500;
+  color: #aaa; letter-spacing: 0.12em; text-transform: uppercase;
+}
+.doc-card__header-year {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px; color: #ccc;
+}
+
+/* Body */
+.doc-card__body {
+  flex: 1; padding: 18px 16px 0;
+  display: flex; flex-direction: column;
+}
+
+/* 역할 레이블 */
+.doc-card__role {
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px; font-weight: 500;
+  color: #bbb; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* 이름: B 크기 + A 내용 */
+.doc-card__name {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 22px; font-weight: 700;
+  color: #0a0a0a; line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 10px;
+}
+
+/* 설명 */
+.doc-card__desc {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 9.5px; color: #888;
+  line-height: 1.65; letter-spacing: -0.02em;
+  flex: 1;
+}
+
+/* 칩 — 푸터와 간격 확보 */
+.doc-card__chips {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-top: auto;
+  padding-top: 10px;
+  padding-bottom: 14px;
+}
+.doc-card__chip {
+  font-family: 'Poppins', sans-serif;
+  font-size: 8.5px; color: #999;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 20px; padding: 2px 7px;
+}
+
+/* Footer: B 스타일 */
+.doc-card__footer {
+  padding: 11px 16px 14px;
+  border-top: 0.5px solid #f0f0f0;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-shrink: 0;
+}
+.doc-card__footer-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: #b5aca0;
+}
+.doc-card__footer-arrow { font-size: 13px; color: #c5bdb5; }
 
 /* ═══════════════════════════════════════
    MODAL
@@ -354,7 +373,7 @@ button { background: none; border: none; font-family: inherit; cursor: pointer; 
 ═══════════════════════════════════════ */
 footer {
   background: var(--white);
-  border-top: 1px solid var(--gray-200);
+  /* border-top: 1px solid var(--gray-200); */
 }
 
 /* ═══════════════════════════════════════
