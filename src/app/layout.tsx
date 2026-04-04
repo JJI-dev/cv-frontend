@@ -4,6 +4,9 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Jo yejin — CV',
   description: '조예진 이력서 · 포트폴리오',
+  alternates: {
+    canonical: 'https://space.jji.kr', 
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
